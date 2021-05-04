@@ -90,7 +90,7 @@ class Page {
       'audio': Audio,
       'text': Text,
       'input': Input,
-      //'video': Video
+      'video': Video
     }
 
     URL = new URL("/api/menu", HOSTURL);
@@ -111,7 +111,8 @@ class Page {
         return this.components;
       } catch (err) {
         console.error(err);
-        await goRoot(err);
+        await changeUrl('load');
+        //await goRoot(err);
       }
     }
 
@@ -148,6 +149,7 @@ class Page {
     }
 
     printMenu(menu) {
+      if (menu.length === 0) return;
       const typewriters = Object.values(menu.subElements).map(item => new TypeWriter(item, {speed: 15}));
       // todo: solution via promises
       typewriters.forEach((item, index, array) => {

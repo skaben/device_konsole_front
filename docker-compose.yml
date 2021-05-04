@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  npm_termgame:
+  terminal_vue:
     build: .
     volumes:
       - ./app/src:/app/src
