@@ -5,10 +5,13 @@ services:
     build:
       context: .
     volumes:
-      - ./vue/src:/app/src
+      - ./vue:/app
       - ./dist:/app/dist
+      - modules:/app/node_modules
     command: >
       sh -c "npm run serve"
     ports:
-      - 8080:8080
+      - 8888:8080
 
+volumes:
+  modules: {}

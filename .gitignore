@@ -1,6 +1,7 @@
 .vscode
 build.sh
 .env
+.env*
 .conf
 package-lock.json
 node_modules/

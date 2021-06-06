@@ -12,7 +12,7 @@ import store from './store.js';
 
 import LoadingView from './components/LoadingView.vue';
 
-const API_URL = 'http://127.0.0.1:5000/api';
+const API_URL = process.env.VUE_APP_API_URL;
 
 
 export default {

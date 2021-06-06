@@ -5,14 +5,11 @@ WORKDIR /app
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
 
-COPY ./vue/package.json \
-     ./vue/.babelrc \
-     ./vue/index.html \
-     ./vue/webpack.config.js /app/
+ADD ./vue .
 
 ENV HOST=0.0.0.0 \
     CHOKIDAR_USEPOLLING=true
 
-RUN npm install --save-dev
+RUN npm ci
 
 EXPOSE 8080
