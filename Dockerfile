@@ -10,6 +10,6 @@ ADD ./vue .
 ENV HOST=0.0.0.0 \
     CHOKIDAR_USEPOLLING=true
 
-RUN npm ci
+RUN npm i
 
 EXPOSE 8080

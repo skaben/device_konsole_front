@@ -1,19 +1,12 @@
 <template>
-
   <div class="application">
     <loading-view></loading-view>
   </div>
-
 </template>
 
 <script>
-import axios from 'axios';
-import store from './store.js';
-
 import LoadingView from './components/LoadingView.vue';
-
-const API_URL = process.env.VUE_APP_API_URL;
-
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'terminal',
@@ -22,25 +15,19 @@ export default {
     LoadingView,
   },
 
-  created() {
-    store.data = {};
-    this.getData(`${API_URL}/main`, store.data);
+  computed: {
+    mapState: ({
+
+    })
   },
 
-  methods: {
-    getData(source, target) {
-      axios
-        .get(source)
-        .then(response => {
-          if (response.data.error) { throw response.data.error };
-          if (target) { target = response.data };
-        })
-        .catch (errorMessage => {
-          console.error(errorMessage);
-        })
-    }
-  }
+  methods() {
+  },
 
+  mounted() {
+    this.$store.dispatch('getConfig')
+    console.log(this.$store.state);
+  }
 
 }
 
