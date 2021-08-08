@@ -20,7 +20,8 @@
     "not ie <= 8"
   ],
   "engines": {
-    "npm": ">=6.9.0"
+    "npm": ">=6.9.0",
+    "node": ""
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -38,6 +39,7 @@
     "vuex": "^3.6.2",
     "webpack": "^5.38.1",
     "webpack-dev-server": "^3.11.2",
-    "webpack-cli": "^4.7.2"
+    "webpack-cli": "^4.7.2",
+    "dotenv": "^10.0.0"
   }
 }

@@ -7,6 +7,7 @@ services:
     volumes:
       - ./vue:/app
       - ./dist:/app/dist
+      - .env.local:/app/.env
       - modules:/app/node_modules
     command: >
       sh -c "npm run serve"

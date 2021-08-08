@@ -1,7 +1,10 @@
+import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
-const API_URL = process.env.VUE_APP_API_URL || 'http:/127.0.0.1:5000';
+Vue.use(Vuex)
+
+const API_URL = ENV.VUE_APP_API_URL || 'http:/127.0.0.1:5000';
 const TIMEOUT = 5000;
 
 const api = axios.create({

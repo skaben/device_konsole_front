@@ -16,12 +16,6 @@ export default {
   },
 
   computed: {
-    mapState: ({
-
-    })
-  },
-
-  methods() {
   },
 
   mounted() {
