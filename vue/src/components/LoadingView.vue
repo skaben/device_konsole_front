@@ -49,8 +49,8 @@ export default {
   },
 
   props: {
-    headerMessage: String,
-    footerMessage: String
+    header: String,
+    footer: String
   },
 
   mounted() {
@@ -83,6 +83,12 @@ export default {
     powerOnSound() {
       return this.getAudio('turnon');
     },
+    headerMessage() {
+      return this.header || this.$store.state.config.header;
+    },
+    footerMessage() {
+      return this.footer || this.$store.state.config.footer;
+    }
   },
 }
 

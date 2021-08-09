@@ -35,11 +35,14 @@
     "sass-loader": "^6.0.6",
     "url-loader": "^4.1.1",
     "vue-loader": "15.8.1",
+    "vue-sse": "^2.2.0",
     "vue-template-compiler": "2.6.11",
     "vuex": "^3.6.2",
     "webpack": "^5.38.1",
     "webpack-dev-server": "^3.11.2",
     "webpack-cli": "^4.7.2",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-plugin-transform-regenerator": "^6.26.0"
   }
 }

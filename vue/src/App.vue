@@ -6,7 +6,6 @@
 
 <script>
 import LoadingView from './components/LoadingView.vue';
-import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'terminal',
@@ -18,9 +17,10 @@ export default {
   computed: {
   },
 
-  mounted() {
-    this.$store.dispatch('getConfig')
-    console.log(this.$store.state);
+  async mounted() {
+    await this.$store.dispatch('getConfig')
+    await this.$store.dispatch('getGame')
+    await this.$store.dispatch('getMenu')
   }
 
 }
