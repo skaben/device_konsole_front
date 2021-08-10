@@ -89,15 +89,23 @@ class Page {
       'image': Image,
       'audio': Audio,
       'text': Text,
-      'input': Input,
+      'user': Input,
       'video': Video
     }
 
     URL = new URL("/api/menu", HOSTURL);
+    URL_MAIN = new URL("/api/main", HOSTURL);
 
-    async initComponents() {
-      const apiData = await getData(this.URL) || [];
-      this.data = apiData.length === 0
+  async initComponents() {
+    const apiMainData = await getData(this.URL_MAIN) || {};
+    if (Object.keys(apiMainData).length > 0) {
+      if (!apiMainData.powered || apiMainData.blocked ) {
+        window.location.href = "/main";
+      }
+    }
+
+    const apiData = await getData(this.URL) || [];
+    this.data = apiData.length === 0
                     ? testData
                     : apiData;
 
@@ -123,7 +131,7 @@ class Page {
 
     initEventListeners() {
       this.element.addEventListener("pointerdown", event => {
-        event.preventDefault();
+        //event.preventDefault();
         const target = event.target.closest('a');
         if (!target) return;
 
@@ -167,12 +175,12 @@ class Page {
         // get component object type
         try {
           const supported = this.supported[data['type']];
-          if (!supported) { throw `${data['type']} is not in ${this.supported} list`};
+          if (!supported) { throw `${data['type']} is not in supported list`};
           scene = supported(data);
         } catch (err) {
           console.error(`[!] when rendering ${data['type']} ${err}`);
         }
-      };
+      }
       return scene;
     }
 

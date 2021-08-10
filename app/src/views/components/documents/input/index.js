@@ -16,7 +16,7 @@ class InputDoc {
   }
 
   initComponents() {
-    this.initTimer({header: ':: escalation in progress...'});
+    this.initTimer({header: `:: ${this.name} in progress...`});
   }
 
   template() {
@@ -25,7 +25,7 @@ class InputDoc {
         <div class="content__header" data-element="header"></div>
         <div class="content__main" data-element="main">
           <form class="input-form" name="user">
-          <textarea value="test"></textarea>
+            <input type="text">
           </form>
         </div>
         <div class="content__footer" data-element="footer"></div>

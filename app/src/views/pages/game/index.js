@@ -7,6 +7,8 @@ import { viewMixin } from "../../../mixins/view";
 import { pageMixin, canRenderAsyncWithComponents } from "../../../mixins/page";
 
 import "./style.scss";
+import getTimer from "../../components/elements/timer";
+import socket from "../../../util/socket";
 
 let testData = {
   "words": ['AARDVARK', "TESTWORD", "WORDTEST", "VAARDARK", "TESTTEST", "WORDWORD", "ESTESTTT"],
@@ -22,6 +24,10 @@ if (!DEBUG) {
   testData = {};
 }
 
+const blockDevice = () => {
+  socket.emit('block');
+}
+
 class Page {
 
   element;
@@ -29,8 +35,16 @@ class Page {
   components = {};
 
   URL = new URL("/api/hack", HOSTURL);
+  URL_MAIN = new URL("/api/main", HOSTURL);
 
   async initComponents() {
+    const apiMainData = await getData(this.URL_MAIN) || {};
+    if (Object.keys(apiMainData).length > 0) {
+      if (!apiMainData.powered || apiMainData.blocked ) {
+        window.location.href = "/main";
+      }
+    }
+
     const apiData = await getData(this.URL) || {};
     const data = Object.keys(apiData).length === 0
                   ? testData
@@ -38,7 +52,11 @@ class Page {
 
     try {
       this.components.header = TextBar({message: data.header || '', navData: {"back": "/"}});
-      this.components.footer = TextBar({message: data.footer || ''});
+      if (data.timeout && data.timeout > 0) {
+        this.components.footer = getTimer({timer: data.timeout, message: data.footer, onEnd: blockDevice});
+      } else {
+        this.components.footer = TextBar({message: data.footer || ''});
+      }
       this.components.hack = HackScreen(data)
 
       this.assignTypewriters();
@@ -56,8 +74,6 @@ class Page {
 
     toggle(headerNav);
     toggle(this.components.hack.element);
-
-    // I really need await
 
     const headerTyper = new TypeWriter(this.components.header.subElements.main, {
                                         speed: 25,
