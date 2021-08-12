@@ -1,11 +1,35 @@
 .input-form {
-  padding: 3vh 5vw 3vh 5vw;
+  padding: 1vh 0 1vh 0;
   width: 100%;
   max-width: 90vw;
   height: 75vh;
+}
 
-  input {
-    border: 1px solid white;
-    height: 2rem;
-  }
+.user-input {
+  cursor: vertical-text;
+  border: none;
+  border-bottom: 2px dashed rgba(235, 255, 223, 0.75);
+  background: none;
+  font-size: 1.2rem;
+  color: rgba(235, 255, 223, 0.95);
+  font-family: "VT220", monospace;
+  padding: .2rem;
+  height: 2rem;
+}
+
+.user-submit {
+  border: 1px dotted rgba(235, 255, 223, 0.75);
+  background: rgba(0, 0, 0, 0.1);
+  color: rgba(235, 255, 223, 0.75);
+  font-family: "VT220", monospace;
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: .75rem;
+  margin-left: 1.2rem;
+}
+
+.user-submit:hover {
+  background: transparent;
+  border: 1px dotted rgba(235, 255, 223, 0.95);
+  color: rgba(235, 255, 223, 0.95);
 }

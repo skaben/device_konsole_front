@@ -170,6 +170,8 @@ class Page {
     getGameScene(index) {
       let scene = this.gameScenes[index];
       const data = this.data[index];
+      console.log(data);
+
       if (!data || data['type'] === 'game') return;
       if (!scene) {
         // get component object type
