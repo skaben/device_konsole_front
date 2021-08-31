@@ -1,6 +1,6 @@
 <template>
   <div class="textbar">
-    <div class="textbar__main"><span>{{message}}</span></div>
+    <div class="textbar__main"><span :class="textClass">{{message}}</span></div>
   </div>
 </template>
 
@@ -8,6 +8,10 @@
 export default {
   props: {
     message: String,
+    textClass: {
+      type: String,
+      default: "hdr-text"
+    }
   }
 }
 </script>

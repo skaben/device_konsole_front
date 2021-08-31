@@ -1,26 +1,45 @@
 <template>
   <div class="application">
-    <loading-view></loading-view>
+    <div class="screen">
+      <component :is="currentComponent"></component>
+    </div>
   </div>
 </template>
 
 <script>
-import LoadingView from './components/LoadingView.vue';
+import Blocked from './pages/Blocked.vue';
+import PowerOff from './pages/PowerOff.vue';
+import Console from "./pages/Console";
 
 export default {
   name: 'terminal',
 
   components: {
-    LoadingView,
+    "blocked": Blocked,
+    "off": PowerOff,
+    "active": Console
   },
 
   computed: {
+    currentComponent() {
+      return this.$store.getters.checkState || "off"
+    },
+  },
+
+  methods: {
+    getConfig() {
+      this.$store.dispatch('getConfig')
+      this.$store.dispatch('getMenu')
+    },
+    toggleStore() {
+      this.$store.dispatch('toggle')
+    }
   },
 
   async mounted() {
     await this.$store.dispatch('getConfig')
-    await this.$store.dispatch('getGame')
-    await this.$store.dispatch('getMenu')
+    setInterval(() => this.getConfig(), 5000)
+    setInterval(() => this.toggleStore(), 2000)
   }
 
 }

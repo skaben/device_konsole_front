@@ -5,29 +5,22 @@
 </template>
 
 <script>
-import eventBus from '../event-bus';
-
 export default {
 
-  data() {
-    return {
-      time: ''
-    }
-  },
+  data: () => ({
+    time: ''
+  }),
 
   props: {
     timer: {
       type: Number,
       default: 0
     },
-    onEnd: {
-      type: String,
-      default: 'stop'
-    }
   },
 
   methods: {
     start() {
+      this.$emit('started');
       this.counter = setInterval(() => {
         if (this.timer > 0) {
           this.time = `${--this.timer}`;
@@ -40,7 +33,7 @@ export default {
     stop() {
       this.time = '';
       clearInterval(this.counter);
-      eventBus.$emit('timer', this.onEnd)
+      this.$emit('stopped');
     }
   }
 
