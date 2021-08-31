@@ -5,6 +5,7 @@ build.sh
 .env
 .env*
 .conf
+*.tar.gz
 package-lock.json
 node_modules/
 dist/
