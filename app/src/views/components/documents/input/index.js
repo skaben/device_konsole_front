@@ -6,13 +6,14 @@ import socket from '../../../../util/socket';
 class InputDoc {
 
   constructor({
-    name,
+    display,
     data,
     timer
   } = props) {
-    this.name = name;
+    this.display = display;
+    this.action = data.action;
     this.message = data.message || "";
-    this.expected = data["require"] || "";
+    this.expected = data["expected"] || "";
     this.replyOk = data["on_success"] || 'ПРОВЕРКА ПРАВИЛЬНОСТИ ВВОДА, ОЖИДАЙТЕ...';
     this.replyFail = data["on_fail"] || 'ВВОД НЕУСПЕШЕН, ОБ ИНЦИДЕНТЕ БУДЕТ ДОЛОЖЕНО';
     this.timer = timer;
@@ -24,7 +25,7 @@ class InputDoc {
     if (this.subElements.textInput.value === this.expected) {
       success = true;
     }
-    socket.emit('user-input', {'input': this.name, 'success': success});
+    socket.emit('user-input', {'action': this.action, 'success': success});
     this.subElements.form.style.display = "none";
     if (!success) {
       this.subElements.formText.textContent = this.replyFail;
@@ -36,7 +37,7 @@ class InputDoc {
   }
 
   initComponents() {
-    this.initTimer({header: `:: ${this.name} ...`});
+    this.initTimer({header: `:: ${this.display} ...`});
     this.subElements.textInput.focus();
     this.subElements.textInput.scrollIntoView();
     this.subElements.form.addEventListener("submit", this.onSubmit);

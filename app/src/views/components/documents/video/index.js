@@ -7,11 +7,11 @@ import { canRenderAsyncWithComponents, documentMixin } from '../../../../mixins/
 class VideoDoc {
 
   constructor({
-    name,
+    display,
     data,
     timer
   } = props) {
-    this.name = name;
+    this.display = display;
     this.video = `/assets/video/${data}`;
     this.timer = timer;
   }

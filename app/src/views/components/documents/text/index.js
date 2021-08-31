@@ -6,11 +6,11 @@ import { documentMixin, canRenderAsyncWithComponents } from '../../../../mixins/
 class TextDoc {
 
   constructor({
-    name,
+    display,
     data,
     timer
   } = props) {
-    this.name = name;
+    this.display = display;
     this.text = data.split('\\');
     this.timer = timer;
   }

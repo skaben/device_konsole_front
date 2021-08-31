@@ -5,11 +5,11 @@ import { documentMixin, canRenderAsyncWithComponents } from '../../../../mixins/
 class ImageDoc {
 
   constructor({
-    name,
+    display,
     data,
     timer
   } = props) {
-    this.name = name;
+    this.display = display;
     this.image = data;
     this.timer = timer;
   }
