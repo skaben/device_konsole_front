@@ -6,7 +6,7 @@ import {
   intersection,
   chunkArrayInGroups,
   objectFromArrays,
-} from "../../../../util/helpers.js";
+} from "../../../../../../vue/src/util/helpers.js";
 
 import {
   viewMixin,
@@ -58,7 +58,7 @@ class HackGame {
     this.cheats = this.leftBrackets.concat(this.rightBrackets);
     this.triesAtStart = this.tries;
     this.cheatRestore = Math.floor(chance / 5);
-    this.cheatRemove = 100;  // quick fix, words should be removed always
+    this.cheatRemove = 100;  // always
 
     this.textField = this.getTextField();
     this.content = this.getContent();
@@ -164,7 +164,17 @@ class HackGame {
   }
 
   compareWithPassword(word) {
-    return intersection(word.split(''), this.password.split('')).length;
+    let count = 0;
+    const wordChars = word.split('');
+    const passChars = this.password.split('');
+
+    wordChars.forEach((el, idx) => {
+      if (passChars[idx] === el) {
+        count++;
+      };
+    })
+
+    return count;
   }
 
   addServiceRow(content) {

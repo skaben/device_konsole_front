@@ -9,7 +9,7 @@ import { pageMixin, canRenderAsyncWithComponents } from '../../../mixins/page';
 import "./style.scss";
 
 import { getData } from "../../../util/api";
-import { changeUrl } from "../../../util/helpers";
+import { changeUrl } from "../../../../../vue/src/util/helpers";
 import socket from "../../../util/socket";
 
 

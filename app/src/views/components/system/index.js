@@ -1,5 +1,5 @@
 import { viewMixin, canRender } from "../../../mixins/view";
-import { dispatchEvent, changeUrl } from "../../../util/helpers";
+import { dispatchEvent, changeUrl } from "../../../../../vue/src/util/helpers";
 
 import "./style.scss";
 

@@ -1,4 +1,4 @@
-import { dispatchEvent } from "../util/helpers";
+import { dispatchEvent } from "../../../vue/src/util/helpers";
 
 const APIURL = new URL("/api/event", HOSTURL);
 

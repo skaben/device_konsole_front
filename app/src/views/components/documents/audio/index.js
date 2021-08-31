@@ -7,11 +7,11 @@ import { canRenderAsyncWithComponents, documentMixin } from '../../../../mixins/
 class AudioDoc {
 
   constructor({
-    name,
+    display,
     data,
     timer
   } = props) {
-    this.name = name;
+    this.display = display;
     this.audio = data;
     this.timer = timer;
   }

@@ -9,12 +9,13 @@ class menuObject {
   }
 
   rows() {
+    if (!this.items) return;
     return this.items.map((item, index) => {
-      const {menu, href} = item;
+      const {display, href} = item;
       const link = href ? `/${href}` : 'javascript:;';
       return `
         <div class="menu__item">
-          <a href="${link}" data-element="${index}" tabindex="${index + 1}">${menu}</a>
+          <a href="${link}" data-element="${index}" tabindex="${index + 1}">${display}</a>
         </div>
       `
     }).join('');

@@ -2,7 +2,6 @@ import getMenu from "../../components/menu";
 import Image from '../../components/documents/image';
 import Audio from '../../components/documents/audio';
 import Text from '../../components/documents/text';
-import Video from '../../components/documents/video';
 import Input from '../../components/documents/input';
 
 import { viewMixin } from '../../../mixins/view';
@@ -13,7 +12,7 @@ import { getData } from "../../../util/api";
 import TypeWriter from "../../components/effects/typewriter";
 
 import "../../../assets/styles/style.scss";
-import { goRoot, changeUrl } from "../../../util/helpers";
+import { goRoot, changeUrl } from "../../../../../vue/src/util/helpers";
 
 
 let testData = [
@@ -89,15 +88,23 @@ class Page {
       'image': Image,
       'audio': Audio,
       'text': Text,
-      'input': Input,
-      //'video': Video
+      'user': Input,
+      'video': Video
     }
 
     URL = new URL("/api/menu", HOSTURL);
+    URL_MAIN = new URL("/api/main", HOSTURL);
 
-    async initComponents() {
-      const apiData = await getData(this.URL) || [];
-      this.data = apiData.length === 0
+  async initComponents() {
+    const apiMainData = await getData(this.URL_MAIN) || {};
+    if (Object.keys(apiMainData).length > 0) {
+      if (!apiMainData.powered || apiMainData.blocked ) {
+        window.location.href = "/main";
+      }
+    }
+
+    const apiData = await getData(this.URL) || [];
+    this.data = apiData.length === 0
                     ? testData
                     : apiData;
 
@@ -111,7 +118,8 @@ class Page {
         return this.components;
       } catch (err) {
         console.error(err);
-        await goRoot(err);
+        await changeUrl('load');
+        //await goRoot(err);
       }
     }
 
@@ -122,7 +130,7 @@ class Page {
 
     initEventListeners() {
       this.element.addEventListener("pointerdown", event => {
-        event.preventDefault();
+        //event.preventDefault();
         const target = event.target.closest('a');
         if (!target) return;
 
@@ -148,6 +156,7 @@ class Page {
     }
 
     printMenu(menu) {
+      if (menu.length === 0) return;
       const typewriters = Object.values(menu.subElements).map(item => new TypeWriter(item, {speed: 15}));
       // todo: solution via promises
       typewriters.forEach((item, index, array) => {
@@ -160,17 +169,19 @@ class Page {
     getGameScene(index) {
       let scene = this.gameScenes[index];
       const data = this.data[index];
+      console.log(data);
+
       if (!data || data['type'] === 'game') return;
       if (!scene) {
         // get component object type
         try {
           const supported = this.supported[data['type']];
-          if (!supported) { throw `${data['type']} is not in ${this.supported} list`};
+          if (!supported) { throw `${data['type']} is not in supported list`};
           scene = supported(data);
         } catch (err) {
           console.error(`[!] when rendering ${data['type']} ${err}`);
         }
-      };
+      }
       return scene;
     }
 
