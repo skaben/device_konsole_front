@@ -20,55 +20,55 @@ let testData = [
   {
     'type': 'game',
     'href': 'hack',
-    'menu': 'hack terminal now',
+    'display': 'hack terminal now',
     'timer': -1
   },
   {
     'type': 'image',
     'data': 'test.jpg',
-    'name': 'image_0001',
+    'display': 'image_0001',
     'menu': 'show image file',
     'timer': -1
   },
   {
     'type': 'image',
     'data': 'height.jpg',
-    'name': 'image_0001',
+    'display': 'image_0001',
     'menu': 'height image',
     'timer': -1
   },
   {
     'type': 'image',
     'data': 'width.jpg',
-    'name': 'image_0001',
+    'display': 'image_0001',
     'menu': 'width image',
     'timer': -1
   },
   {
     'type': 'audio',
     'data': 'screen_change.mp3',
-    'name': 'audio_0001',
+    'display': 'audio_0001',
     'menu': 'audio',
     'timer': -1
   },
   {
     'type': 'text',
     'data': 'this_is_the_test text'.repeat(2560),
-    'name': 'text',
+    'display': 'text',
     'menu': 'longtext',
     'timer': -1
   },
   {
     'type': 'video',
     'data': 'test.mp4',
-    'name': 'vidos',
+    'display': 'vidos',
     'menu': 'video file',
     'timer': -1
   },
   {
     'type': 'input',
     'data': {'message': 'enter password', 'expected': 'password'},
-    'name': 'vidos',
+    'display': 'vidos',
     'menu': 'user input',
     'timer': -1
   },
