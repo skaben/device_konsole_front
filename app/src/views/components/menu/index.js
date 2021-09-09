@@ -11,6 +11,7 @@ class menuObject {
   rows() {
     if (!this.items) return;
     return this.items.map((item, index) => {
+      console.log(item);
       const {display, href} = item;
       const link = href ? `/${href}` : 'javascript:;';
       return `

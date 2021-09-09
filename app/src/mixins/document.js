@@ -17,7 +17,7 @@ const blockDevice = () => {
 
 const canInitTimer = {
   initTimer({footer, header, callback} = {}) {
-    const headerMessage = header || `:: запрошен документ ${this.name}`,
+    const headerMessage = header || `:: запрошен документ ${this.display}`,
           footerMessage = footer || 'интерфейс будет заблокирован через: ',
           callbackOnEnd = callback || blockDevice;
     if (this.timer && this.timer > 0) {
