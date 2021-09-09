@@ -9,12 +9,12 @@ export default class TypeWriter {
 
   constructor(target, {
     text,
-    name = 'typewriter',
+    display = 'typewriter',
     speed = 25,
     delay = renderDelay,
     onComplete
   } = {}) {
-    this.name = name;
+    this.name = display;
     this.speed = speed;
     this.delay = delay;
     this.onComplete = onComplete;
