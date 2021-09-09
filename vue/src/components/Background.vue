@@ -77,16 +77,16 @@ export default {
       gray,
       black 90%
     );
-    animation: pulse 30s linear infinite;
+    animation: pulse 15s linear infinite;
   }
 
 
   @keyframes pulse {
-    0% { opacity: .3; }
-    25% { opacity: .1; }
+    0% { opacity: .25; }
+    25% { opacity: .18; }
     50% { opacity: .2; }
-    75% { opacity: .1; }
-    100% { opacity: .3; }
+    75% { opacity: .18; }
+    100% { opacity: .25; }
   }
 
 </style>

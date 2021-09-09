@@ -1,0 +1,10 @@
+/* SCSS */
+@import './variables';
+
+.vue-typer {
+
+  .custom.char {
+    color: lighten($main-green, 10%);
+  }
+
+}

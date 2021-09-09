@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'VT220';
-  src: url('./assets/fonts/VT220.ttf'), format('ttf');
+  src: url('~/assets/fonts/VT220.ttf') format('ttf');
   font-weight: normal;
   font-style: normal;
   font-display: fallback;
@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: 'CutiveMono';
-  src: url('./assets/fonts/CutiveMono.ttf'), format('ttf');
+  src: url('~/assets/fonts/CutiveMono.ttf') format('ttf');
   font-weight: normal;
   font-style: normal;
   font-display: fallback;

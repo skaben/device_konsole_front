@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: 'build.js',
   },
   plugins: [
     new VueLoaderPlugin(),
@@ -79,7 +79,7 @@ module.exports = {
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: 'file-loader',
         options: {
           limit: 10000,
           importLoaders: 1,
@@ -112,12 +112,12 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"'
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
+//    new webpack.optimize.UglifyJsPlugin({
+//      sourceMap: true,
+//      compress: {
+//        warnings: false
+//      }
+//    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })

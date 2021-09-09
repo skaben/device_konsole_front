@@ -27,8 +27,7 @@ a::before {
   padding-right: .2rem;
 }
 
-.page,
-.content {
+.page {
   padding: 1rem 2rem 1rem 2rem;
 }
 
@@ -61,4 +60,45 @@ a::before {
 
 .screen-wrapper {
   border: .3rem solid $black;
+}
+
+.hdr-text {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.content {
+  height: 100%;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.content__header {
+  padding-top: 2.5rem;
+  flex-shrink: 0;
+}
+
+.content__main {
+  flex: 1 0 auto;
+}
+
+.content__footer {
+  padding-bottom: 2.25rem;
+  flex-shrink: 0;
+}
+
+
+::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.5);        /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(243, 255, 236, 0.3);    /* color of the scroll thumb */
+  border: 1px solid $main-green;  /* creates padding around scroll thumb */
 }

@@ -10,6 +10,7 @@
 import Blocked from './pages/Blocked.vue';
 import PowerOff from './pages/PowerOff.vue';
 import Console from "./pages/Console";
+import AccessLog from "./pages/AccessLog";
 
 export default {
   name: 'terminal',
@@ -17,7 +18,9 @@ export default {
   components: {
     "blocked": Blocked,
     "off": PowerOff,
-    "active": Console
+    "dungeon": PowerOff,
+    "console": Console,
+    "log": AccessLog,
   },
 
   computed: {
@@ -29,17 +32,12 @@ export default {
   methods: {
     getConfig() {
       this.$store.dispatch('getConfig')
-      this.$store.dispatch('getMenu')
     },
-    toggleStore() {
-      this.$store.dispatch('toggle')
-    }
   },
 
   async mounted() {
     await this.$store.dispatch('getConfig')
     setInterval(() => this.getConfig(), 5000)
-    setInterval(() => this.toggleStore(), 2000)
   }
 
 }

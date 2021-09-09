@@ -8,7 +8,7 @@
        width="100%"
        viewBox="-50 0 300 300"
        preserveAspectRatio="xMidYMid meet"
-       class="loading__svg animate-centered"
+       :class="svgClass"
        :style=svgStyle
        >
       <g>
@@ -40,6 +40,10 @@ export default {
     speed: {
       type: Number,
       default: 15
+    },
+    additionalClass: {
+      type: String,
+      default: ''
     }
   },
 
@@ -49,6 +53,9 @@ export default {
     },
     rotateStyle() {
       return {animation: `rotate ${this.speed}s linear infinite`};
+    },
+    svgClass() {
+      return `loading__svg animate-centered ${this.additionalClass}`
     }
   }
 }

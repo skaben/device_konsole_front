@@ -7,12 +7,15 @@
   "private": true,
   "scripts": {
     "serve": "cross-env NODE_ENV=development webpack serve --config /app/webpack.config.js --open --hot --host 0.0.0.0",
-    "build": "cross-env NODE_ENV=production webpack --config /app/webpack.config.js --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --config /app/webpack.config.js --progress"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "vue": "2.6.11",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "vue-router": "^3.5.2",
+    "cross-env": "^5.0.5",
+    "vue-sse": "^2.2.0"
   },
   "browserslist": [
     "> 1%",
@@ -28,16 +31,15 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
-    "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
     "url-loader": "^4.1.1",
     "vue-loader": "15.8.1",
-    "vue-sse": "^2.2.0",
     "vue-template-compiler": "2.6.11",
-    "vuex": "^3.6.2",
+    "vue-socket.io": "^3.0.10",
+    "vue-typer": "^1.2.0",
     "webpack": "^5.38.1",
     "webpack-dev-server": "^3.11.2",
     "webpack-cli": "^4.7.2",

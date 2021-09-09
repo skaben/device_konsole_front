@@ -2,20 +2,22 @@
   <Base class="content">
     <template #header>
       <loading-mech additional-class="loading__svg-small loading__svg-left"></loading-mech>
+      <aquila class="aquila-small" color="white" :opacity="0.1"></aquila>
       <div class="console-header">
-        <energy-widget></energy-widget>
         <vue-typer :text="headerMessage" :repeat="0"></vue-typer>
       </div>
       <loading-mech additional-class="loading__svg-small loading__svg-right"></loading-mech>
     </template>
     <template #footer>
-      <Konsole @locked="setStatus"/>
+      <div class="access-log" ref="history">
+        <Stdout v-for="(log, index) in accessLog" :message="log"></Stdout>
+      </div>
     </template>
     <template #background>
       <background
-          :hue=310
+          :hue=350
           :opacity=75
-          :brightness=200
+          :brightness=120
       ></background>
     </template>
   </Base>
@@ -24,36 +26,49 @@
 <script>
 import Base from "../components/Base";
 import Background from "../components/Background";
-import Konsole from "../components/konsole/Konsole";
-import EnergyWidget from "../components/EnergyWidget";
 import LoadingMech from "../components/LoadingMech";
+import Stdout from "../components/konsole/Stdout";
+import Aquila from "../components/Aquila";
 
 export default {
   components: {
-    EnergyWidget,
+    Aquila,
     Base,
     Background,
-    Konsole,
-    LoadingMech
+    LoadingMech,
+    Stdout
   },
 
   data: () => ({
-    status: 'OPUS MODUS'
+    accessLog: []
   }),
 
   computed: {
     headerMessage() {
-      return `+++ SUMMA NEXUM MODERATIO +++ ${this.status} +++`
+      return `+++ SUMMA CONCESSIO ANNALIS +++ `
     },
   },
 
   methods: {
     getEventLog() {
-      this.$store.dispatch("getConsoleData")
+      this.$store.dispatch("getAccessEvents")
     },
-    setStatus(data) {
-      this.status = data.state
-    }
+    scroll() {
+      this.$refs.history.scrollTop = this.$refs.history.scrollHeight
+    },
+  },
+
+  created() {
+    this.$store.watch(
+        () => {return this.$store.state.accessList},
+        (newVal) => {
+          console.log(this.accessLog)
+          this.accessLog = newVal
+          this.scroll()
+        },
+        {
+          deep: true
+        })
   },
 
   mounted() {
@@ -67,6 +82,13 @@ export default {
 <style lang="scss">
 @import '../styles/typer';
 @import '../styles/main';
+
+.aquila {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -105;
+}
 
 .loading__svg-small {
   display: block;
@@ -88,6 +110,22 @@ export default {
   width: 75vw;
   margin: auto;
   text-align: center;
+}
+
+.access-log {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 71vh;
+  display: flex;
+  flex-direction: column;
+  padding-left: .75rem;
+  padding-bottom: 1.15rem;
+}
+
+.aquila-small {
+  position: absolute;
+  top: 28%;
+  left: 22.3%;
 }
 
 </style>
